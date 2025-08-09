@@ -1,0 +1,80 @@
+// Prisma schema for ThinkAlike persistent storage
+// Start with SQLite for local/dev, can migrate to PostgreSQL for production
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Ritual {
+  id         String   @id @default(cuid())
+  type       String
+  initiator  String
+  timestamp  DateTime @default(now())
+  payload    Json
+}
+
+model NarrativeState {
+  id          String   @id @default(cuid())
+  userId      String
+  currentNode String
+  history     Json
+  forkId      String?
+  updatedAt   DateTime @updatedAt
+}
+
+model Agent {
+  id        String   @id
+  archetype String
+  memory    Json
+}
+
+model ResonanceNode {
+  id         String   @id
+  attributes Json
+}
+
+model ResonanceEdge {
+  id     String   @id @default(cuid())
+  from   String
+  to     String
+  weight Float
+}
+
+model VerificationEvent {
+  id        String   @id
+  userId    String
+  method    String
+  timestamp DateTime
+  status    String
+}
+
+model AlchemyProgress {
+  id        String   @id @default(cuid())
+  userId    String  @unique
+  stage     String
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  user
+  admin
+  moderator
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String   @unique
+  fullName  String?
+  password  String
+  role      Role     @default(user)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Extend with Sybil models as needed

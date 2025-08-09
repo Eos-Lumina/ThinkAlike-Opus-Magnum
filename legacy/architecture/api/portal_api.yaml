@@ -1,0 +1,182 @@
+openapi: 3.0.3
+info:
+  title: ThinkAlike - Portal Realm API
+  description: |
+    API specification for the Portal Realm, which handles user registration, profile creation, and the entire 6-phase narrative initiation journey.
+    This API is designed with PET/Clarity and Symbolic/Ritual principles at its core.
+  version: v1.0.0
+  contact:
+    name: ThinkAlike Architectural Stewards
+    email: architecture@thinkalike.dev
+servers:
+  - url: https://api.thinkalike.dev/v1/portal
+    description: Production server
+  - url: http://localhost:8000/api/v1/portal
+    description: Local development server
+
+tags:
+  - name: User Account
+    description: Operations related to user registration and profile management.
+  - name: Portal Journey
+    description: Endpoints that drive the user through the narrative initiation ritual.
+
+paths:
+  /register:
+    post:
+      tags:
+        - User Account
+      summary: Register a new user account
+      description: Initiates the user's journey. Symbolic context - "Crossing the Portal Threshold."
+      operationId: registerUser
+      requestBody:
+        description: User credentials for registration.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        '201':
+          description: User account created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      x-symbolic-context:
+        ritual_phase: 'portal_entry'
+
+  /profile/me:
+    get:
+      tags:
+        - User Account
+      summary: Retrieve current user's profile
+      description: Symbolic context - "Mirror of Self." Requires authentication.
+      operationId: getMyProfile
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: The current user's full profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-symbolic-context:
+        ritual_phase: 'self_reflection'
+
+  /journey/submit-reflection/{question_id}:
+    post:
+      tags:
+        - Portal Journey
+      summary: Submit answer to a Portal reflective question
+      description: Symbolic context - "Ritual of Self-Reflection."
+      operationId: submitReflection
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: question_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                answer:
+                  type: string
+                  example: "I seek clarity and connection."
+      responses:
+        '200':
+          description: Reflection submitted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SymbolicStatusResponse'
+      x-symbolic-context:
+        ritual_phase: 'value_elicitation'
+
+  # Add other portal journey endpoints here following the same pattern...
+  # /portal/forge_glyph, /portal/set_invocation_phrase, etc.
+
+components:
+  schemas:
+    UserCreate:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+      required:
+        - email
+        - password
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        status:
+          type: string
+          example: 'active'
+        x-symbolic-metadata:
+          $ref: '#/components/schemas/SymbolicStatusResponse'
+
+    Profile:
+      type: object
+      properties:
+        user_id:
+          type: string
+          format: uuid
+        userValueProfile:
+          type: object
+          description: "Contains all fields: archetypes, anchor statement, etc."
+        initiationGlyph:
+          type: string
+        invocationPhraseHash:
+          type: string
+        # ... and other profile fields
+      required:
+        - user_id
+
+    SymbolicStatusResponse:
+      type: object
+      properties:
+        ritual_phase:
+          type: string
+          description: "The current phase of the symbolic/ritual journey."
+          example: "glyph_forging"
+        symbolic_status:
+          type: string
+          description: "A symbolic description of the outcome."
+          example: "vow_sealed"
+        trace_id:
+          type: string
+          format: uuid
+          description: "Trace ID for PET/Clarity and auditability."
+
+  responses:
+    BadRequest:
+      description: The request was malformed or invalid.
+    Unauthorized:
+      description: Authentication credentials are required and are invalid or missing.
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

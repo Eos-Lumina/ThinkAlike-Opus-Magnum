@@ -1,0 +1,58 @@
+{
+    "runtimeTarget": {
+        "name": ".NETCoreApp,Version=v8.0/win-x64",
+        "signature": ""
+    },
+    "compilationOptions": {},
+    "targets": {
+        ".NETCoreApp,Version=v8.0": {},
+        ".NETCoreApp,Version=v8.0/win-x64": {
+            "Microsoft.NETCore.App.Runtime.win-x64/8.0.11": {
+                "runtime": {
+                    "System.Private.CoreLib.dll": {
+                        "assemblyVersion": "8.0.0.0",
+                        "fileVersion": "8.0.1124.51707"
+                    },
+                    "Microsoft.VisualBasic.dll": {
+                        "assemblyVersion": "10.0.0.0",
+                        "fileVersion": "8.0.1124.51707"
+                    },
+                    "hostpolicy.dll": {
+                        "fileVersion": "8.0.1124.51707"
+                    },
+                    "Microsoft.DiaSymReader.Native.amd64.dll": {
+                        "fileVersion": "14.40.33810.0"
+                    }
+                },
+                "native": {
+                    "clretwrc.dll": {
+                        "fileVersion": "8.0.1124.51707"
+                    },
+                }
+            }
+        }
+    },
+    "libraries": {
+        "Microsoft.NETCore.App.Runtime.win-x64/8.0.11": {
+            "type": "package",
+            "serviceable": true,
+            "sha512": "",
+            "path": "microsoft.netcore.app.runtime.win-x64/8.0.11"
+        }
+    },
+    "runtimes": {
+        "win-x64": [
+            "win",
+            "any",
+            "base"
+        ],
+        "win-x64-aot": [
+            "win-aot",
+            "win-x64",
+            "win",
+            "aot",
+            "any",
+            "base"
+        ]
+    }
+}

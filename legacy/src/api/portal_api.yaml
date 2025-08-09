@@ -1,0 +1,40 @@
+openapi: 3.0.3
+info:
+  title: ThinkAlike - Portal Realm API
+  description: |
+    API specification for the Portal Realm, which handles user registration, profile creation, and the entire 6-phase narrative initiation journey.
+    This API is designed with PET/Clarity and Symbolic/Ritual principles at its core.
+  version: v1.0.0
+  contact:
+    name: ThinkAlike Architectural Stewards
+    email: architecture@thinkalike.dev
+servers:
+  - url: https://api.thinkalike.dev/v1/portal
+    description: Production server
+  - url: http://localhost:8000/api/v1/portal
+    description: Local development server
+
+tags:
+  - name: User Account
+    description: Operations related to user registration and profile management.
+  - name: Portal Journey
+    description: Endpoints that drive the user through the narrative initiation ritual.
+
+paths:
+  /register:
+    post:
+      tags:
+        - User Account
+      summary: Register a new user account
+      description: Initiates the user's journey. Symbolic context - "Crossing the Portal Threshold."
+      operationId: registerUser
+      requestBody:
+        description: User credentials for registration.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        '201':
+          description: User account created successfully.

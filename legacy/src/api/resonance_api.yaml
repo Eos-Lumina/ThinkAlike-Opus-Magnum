@@ -1,0 +1,184 @@
+openapi: 3.0.3
+info:
+  title: Resonance API
+  description: |
+    This API powers the **value-alignment graph** behind ThinkAlike's discovery engine. It provides structured, consent-driven access to a user’s evolving identity map, enabling symbolic matchmaking and fostering deep connection.
+
+    **Core Principles:**
+    - **User-Directed & Encrypted:** The graph is stored in a user-controlled structure, not a global server.
+    - **Privacy First:** All matches are opt-in, filtered through PET overlays, and data is never monetized.
+    - **Symbolic & Value-Aligned:** Matching is based on deep resonance of symbolic traits, not superficial metrics.
+
+    **Symbolic Role:** This API powers the value-alignment graph behind ThinkAlike's discovery engine. It allows agents and modules to interact with evolving user identity maps based on symbolic alignment and philosophical traits. You don’t find others by searching — you find them by resonating.
+
+    **Safeguards:**
+    - All requests must be tied to consent context.
+    - No global queries allowed.
+    - No matching without resonance field present.
+    - Must integrate with PET overlay logic.
+  version: "1.0.0"
+servers:
+  - url: /api/v1
+paths:
+  /resonance/profile/{uuid}:
+    get:
+      summary: Get Resonance Profile
+      description: Retrieve the current resonance vector for a given user, containing weighted symbolic attributes.
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          description: The unique identifier of the user.
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: A user's resonance profile.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResonanceProfile"
+  /resonance/update:
+    post:
+      summary: Update Resonance Profile
+      description: Submit a new fork path, update tag weights, or otherwise modify the user's resonance vector.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResonanceUpdate"
+      responses:
+        "200":
+          description: The updated resonance profile.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResonanceProfile"
+  /resonance/match/{uuid}:
+    get:
+      summary: Get Resonance Matches
+      description: Returns a list of the top resonance matches for the user, based on symbolic alignment. Requires explicit user consent for each match query.
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          description: The unique identifier of the user initiating the match.
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: A list of resonance matches.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/MatchResult"
+  /resonance/traits:
+    get:
+      summary: List Available Traits
+      description: Get a list of all available symbolic traits, tags, and archetypal arcs that can be part of a resonance profile.
+      responses:
+        "200":
+          description: A list of symbolic traits.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Trait"
+  /resonance/mask:
+    post:
+      summary: Mask Resonance Traits
+      description: Allows a user to hide or mask selected traits from being used in matchmaking queries.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                traitsToMask:
+                  type: array
+                  items:
+                    type: string
+                  description: A list of trait names to mask.
+      responses:
+        "200":
+          description: Confirmation of masked traits.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  maskedTraits:
+                    type: array
+                    items:
+                      type: string
+  /resonance/archetype/{cluster}:
+    get:
+      summary: Query Archetypal Mappings
+      description: Query archetypal mappings within the resonance graph.
+      parameters:
+        - name: cluster
+          in: path
+          required: true
+          description: The archetypal cluster to query.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A list of archetypal mappings.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object # Define your archetype schema here
+components:
+  schemas:
+    ResonanceProfile:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        vector:
+          type: array
+          items:
+            type: object
+            properties:
+              trait:
+                type: string
+              weight:
+                type: number
+                format: float
+    ResonanceUpdate:
+      type: object
+      properties:
+        forkPath:
+          type: string
+        tagWeights:
+          type: object
+          additionalProperties:
+            type: number
+            format: float
+    MatchResult:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        score:
+          type: number
+          format: float
+    Trait:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string

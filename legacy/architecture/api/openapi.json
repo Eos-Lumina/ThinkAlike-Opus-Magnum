@@ -1,0 +1,1814 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "ThinkAlike API (Draft Canonical)",
+        "version": "0.2.0",
+        "description": "Draft OpenAPI specification for the ThinkAlike project. This file defines the canonical schemas for all major entities. Endpoints to be added as implemented."
+    },
+    "paths": {
+        "/users": {
+            "post": {
+                "summary": "Register a new user",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "List all users",
+                "responses": {
+                    "200": {
+                        "description": "A list of users",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{userId}": {
+            "get": {
+                "summary": "Get a user by ID",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a user by ID",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a user by ID",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "User deleted"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                }
+            }
+        },
+        "/value-profiles": {
+            "post": {
+                "summary": "Create a value profile",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ValueProfile"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Value profile created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValueProfile"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "List all value profiles",
+                "responses": {
+                    "200": {
+                        "description": "A list of value profiles",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ValueProfile"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/value-profiles/{profileId}": {
+            "get": {
+                "summary": "Get a value profile by ID",
+                "parameters": [
+                    {
+                        "name": "profileId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Value profile found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValueProfile"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Value profile not found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a value profile by ID",
+                "parameters": [
+                    {
+                        "name": "profileId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ValueProfile"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Value profile updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValueProfile"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Value profile not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a value profile by ID",
+                "parameters": [
+                    {
+                        "name": "profileId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Value profile deleted"
+                    },
+                    "404": {
+                        "description": "Value profile not found"
+                    }
+                }
+            }
+        },
+        "/narrative-duets": {
+            "post": {
+                "summary": "Start a new narrative duet session",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NarrativeDuet"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Narrative duet created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NarrativeDuet"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "List all narrative duets",
+                "responses": {
+                    "200": {
+                        "description": "A list of narrative duets",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/NarrativeDuet"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/narrative-duets/{duetId}": {
+            "get": {
+                "summary": "Get a narrative duet by ID",
+                "parameters": [
+                    {
+                        "name": "duetId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Narrative duet found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NarrativeDuet"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Narrative duet not found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a narrative duet by ID",
+                "parameters": [
+                    {
+                        "name": "duetId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NarrativeDuet"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Narrative duet updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NarrativeDuet"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Narrative duet not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a narrative duet by ID",
+                "parameters": [
+                    {
+                        "name": "duetId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Narrative duet deleted"
+                    },
+                    "404": {
+                        "description": "Narrative duet not found"
+                    }
+                }
+            }
+        },
+        "/consents": {
+            "post": {
+                "summary": "Create a consent record",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Consent"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Consent created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Consent"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "List all consents",
+                "responses": {
+                    "200": {
+                        "description": "A list of consents",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Consent"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/consents/{consentId}": {
+            "get": {
+                "summary": "Get a consent record by ID",
+                "parameters": [
+                    {
+                        "name": "consentId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Consent found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Consent"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Consent not found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a consent record by ID",
+                "parameters": [
+                    {
+                        "name": "consentId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Consent"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Consent updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Consent"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Consent not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a consent record by ID",
+                "parameters": [
+                    {
+                        "name": "consentId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Consent deleted"
+                    },
+                    "404": {
+                        "description": "Consent not found"
+                    }
+                }
+            }
+        },
+        "/connections": {
+            "post": {
+                "summary": "Create a connection",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Connection"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Connection created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Connection"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "List all connections",
+                "responses": {
+                    "200": {
+                        "description": "A list of connections",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Connection"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/connections/{connectionId}": {
+            "get": {
+                "summary": "Get a connection by ID",
+                "parameters": [
+                    {
+                        "name": "connectionId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Connection found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Connection"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Connection not found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a connection by ID",
+                "parameters": [
+                    {
+                        "name": "connectionId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Connection"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Connection updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Connection"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Connection not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a connection by ID",
+                "parameters": [
+                    {
+                        "name": "connectionId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Connection deleted"
+                    },
+                    "404": {
+                        "description": "Connection not found"
+                    }
+                }
+            }
+        },
+        "/hives": {
+            "post": {
+                "summary": "Create a hive",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Hive"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Hive created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Hive"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "List all hives",
+                "responses": {
+                    "200": {
+                        "description": "A list of hives",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Hive"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/hives/{hiveId}": {
+            "get": {
+                "summary": "Get a hive by ID",
+                "parameters": [
+                    {
+                        "name": "hiveId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Hive found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Hive"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Hive not found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a hive by ID",
+                "parameters": [
+                    {
+                        "name": "hiveId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Hive"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Hive updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Hive"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Hive not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a hive by ID",
+                "parameters": [
+                    {
+                        "name": "hiveId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Hive deleted"
+                    },
+                    "404": {
+                        "description": "Hive not found"
+                    }
+                }
+            }
+        },
+        "/hives/{hiveId}/members": {
+            "post": {
+                "summary": "Add a member to a Hive community",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HiveMember"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Hive member added",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HiveMember"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "List all members of a Hive community",
+                "parameters": [
+                    {
+                        "name": "hiveId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of members in the Hive community",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/HiveMember"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/hives/{hiveId}/members/{memberId}": {
+            "get": {
+                "summary": "Get a member of a Hive community by ID",
+                "parameters": [
+                    {
+                        "name": "hiveId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "memberId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Hive member found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HiveMember"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Hive member not found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a member of a Hive community by ID",
+                "parameters": [
+                    {
+                        "name": "hiveId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "memberId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HiveMember"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Hive member updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HiveMember"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Hive member not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remove a member from a Hive community by ID",
+                "parameters": [
+                    {
+                        "name": "hiveId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "memberId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Hive member removed"
+                    },
+                    "404": {
+                        "description": "Hive member not found"
+                    }
+                }
+            }
+        },
+        "/chrona-wallets": {
+            "post": {
+                "summary": "Create a ChronaWallet",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChronaWallet"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "ChronaWallet created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChronaWallet"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "List all ChronaWallets",
+                "responses": {
+                    "200": {
+                        "description": "A list of ChronaWallets",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ChronaWallet"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/chrona-wallets/{walletId}": {
+            "get": {
+                "summary": "Get a ChronaWallet by ID",
+                "parameters": [
+                    {
+                        "name": "walletId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ChronaWallet found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChronaWallet"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "ChronaWallet not found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a ChronaWallet by ID",
+                "parameters": [
+                    {
+                        "name": "walletId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChronaWallet"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ChronaWallet updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChronaWallet"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "ChronaWallet not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a ChronaWallet by ID",
+                "parameters": [
+                    {
+                        "name": "walletId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "ChronaWallet deleted"
+                    },
+                    "404": {
+                        "description": "ChronaWallet not found"
+                    }
+                }
+            }
+        },
+        "/hives-realm": {
+            "get": {
+                "summary": "Get the Hives Realm metadata and list of communities",
+                "responses": {
+                    "200": {
+                        "description": "Hives Realm info",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HivesRealm"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update the Hives Realm metadata",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HivesRealm"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Hives Realm updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HivesRealm"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/hives/{hiveId}/communities": {
+            "post": {
+                "summary": "Create a community (hive) in the Hives portal",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Hive"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Community (hive) created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Hive"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "List all communities (hives) in the Hives portal",
+                "responses": {
+                    "200": {
+                        "description": "A list of communities (hives)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Hive"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/hives/{hiveId}/communities/{communityId}": {
+            "get": {
+                "summary": "Get a community (hive) by ID in the Hives portal",
+                "parameters": [
+                    {
+                        "name": "communityId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Community (hive) found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Hive"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Community (hive) not found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a community (hive) by ID in the Hives portal",
+                "parameters": [
+                    {
+                        "name": "communityId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Hive"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Community (hive) updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Hive"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Community (hive) not found"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a community (hive) by ID in the Hives portal",
+                "parameters": [
+                    {
+                        "name": "communityId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Community (hive) deleted"
+                    },
+                    "404": {
+                        "description": "Community (hive) not found"
+                    }
+                }
+            }
+        },
+        "/pci/profiles": {
+            "get": {
+                "summary": "List all PCI profiles",
+                "responses": {
+                    "200": {
+                        "description": "A list of PCI profiles",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": { "$ref": "#/components/schemas/PCIProfile" }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/agents/sessions": {
+            "post": {
+                "summary": "Start agent session",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": { "$ref": "#/components/schemas/AgentSession" }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Agent session started",
+                        "content": {
+                            "application/json": {
+                                "schema": { "$ref": "#/components/schemas/AgentSession" }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "value_profile_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "is_active": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "id",
+                    "username",
+                    "email",
+                    "created_at",
+                    "is_active"
+                ]
+            },
+            "ValueProfile": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "user_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "archetypes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "resonance_score": {
+                        "type": "number"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "id",
+                    "user_id",
+                    "values",
+                    "archetypes",
+                    "updated_at"
+                ]
+            },
+            "NarrativeDuet": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "user_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "agent_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "transcript": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Message"
+                        }
+                    },
+                    "started_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "completed_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "id",
+                    "user_id",
+                    "agent_id",
+                    "transcript",
+                    "started_at"
+                ]
+            },
+            "Message": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "duet_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "sender": {
+                        "type": "string",
+                        "enum": [
+                            "user",
+                            "agent"
+                        ]
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "timestamp": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "id",
+                    "duet_id",
+                    "sender",
+                    "content",
+                    "timestamp"
+                ]
+            },
+            "Connection": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "source_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "target_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "user-user",
+                            "user-agent"
+                        ]
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "pending",
+                            "active",
+                            "blocked"
+                        ]
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "required": [
+                    "id",
+                    "source_id",
+                    "target_id",
+                    "type",
+                    "status",
+                    "created_at"
+                ]
+            },
+            "Hive": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "members": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/HiveMember"
+                        }
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "created_at"
+                ]
+            },
+            "HiveMember": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "hive_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "user_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "role": {
+                        "type": "string"
+                    },
+                    "joined_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "is_admin": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "id",
+                    "hive_id",
+                    "user_id",
+                    "role",
+                    "joined_at"
+                ]
+            },
+            "ChronaWallet": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "user_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "balance": {
+                        "type": "number"
+                    },
+                    "transactions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ChronaTransaction"
+                        }
+                    }
+                },
+                "required": [
+                    "id",
+                    "user_id",
+                    "balance"
+                ]
+            },
+            "ChronaTransaction": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "wallet_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "amount": {
+                        "type": "number"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "earn",
+                            "spend",
+                            "transfer"
+                        ]
+                    },
+                    "timestamp": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "wallet_id",
+                    "amount",
+                    "type",
+                    "timestamp"
+                ]
+            },
+            "Consent": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "user_id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "scope": {
+                        "type": "string"
+                    },
+                    "granted_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "revoked_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "id",
+                    "user_id",
+                    "scope",
+                    "granted_at",
+                    "active"
+                ]
+            },
+            "Hives": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the Hives portal/realm."
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description of the Hives portal/realm."
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "communities": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Hive"
+                        },
+                        "description": "Communities (hives) within the Hives portal."
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "created_at"
+                ]
+            },
+            "HivesRealm": {
+                "type": "object",
+                "description": "The Hives Realm is the top-level construct representing the entire Hives system, containing all Hive communities.",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the Hives Realm."
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description of the Hives Realm."
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "hives": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Hive"
+                        },
+                        "description": "Communities (Hives) within the Hives Realm."
+                    },
+                    "unlock_criteria": {
+                        "type": "string",
+                        "description": "Criteria for unlocking access to the Hives Realm."
+                    },
+                    "related_realms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Other realms related to the Hives Realm (e.g., Portal, Resonance Network)."
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "created_at"
+                ]
+            },
+            "PCIProfile": {
+                "type": "object",
+                "properties": {
+                    "id": { "type": "string", "format": "uuid" },
+                    "user_id": { "type": "string", "format": "uuid" },
+                    "completeness": { "type": "number" }
+                }
+            },
+            "AgentSession": {
+                "type": "object",
+                "properties": {
+                    "id": { "type": "string", "format": "uuid" },
+                    "user_id": { "type": "string", "format": "uuid" },
+                    "context": { "type": "object" }
+                }
+            }
+        }
+    }
+}
